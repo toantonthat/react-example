@@ -1,35 +1,23 @@
 import {
-  REGISTER_REQUEST,
-  REGISTER_SUCCESS,
-  REGISTER_FAILURE,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT,
-  GETALL_REQUEST,
-  GETALL_SUCCESS,
-  GETALL_FAILURE,
-  DELETE_REQUEST,
-  DELETE_SUCCESS,
-  DELETE_FAILURE
-} from "../constants";
+  userConstants
+} from "../constants/user.constants";
 
-export default function users(state = {}, action) {
+export function users(state = {}, action) {
   switch (action.type) {
-    case GETALL_REQUEST:
+    case userConstants.GETALL_REQUEST:
       return {
         loading: true
       };
-    case GETALL_SUCCESS:
+    case userConstants.GETALL_SUCCESS:
       return {
         items: action.users
       };
-    case GETALL_FAILURE:
+    case userConstants.GETALL_FAILURE:
       return {
         error: action.error
       };
 
-    case DELETE_REQUEST:
+    case userConstants.DELETE_REQUEST:
       // add 'deleting:true' property to user being deleted
       return {
         ...state,
@@ -38,12 +26,12 @@ export default function users(state = {}, action) {
         )
       };
 
-    case DELETE_SUCCESS:
+    case userConstants.DELETE_SUCCESS:
       // remove deleted user from state
       return {
         items: state.items.filter(user => user.id !== action.id)
       };
-    case DELETE_FAILURE:
+    case userConstants.DELETE_FAILURE:
       // remove 'deleting:true' property and add 'deleteError:[error]' property to user
       return {
         ...state,

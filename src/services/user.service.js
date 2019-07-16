@@ -1,5 +1,5 @@
-import config from "config";
-import { authHeader } from "../helpers";
+// import { config } from "config";
+import { authHeader } from "../helpers/auth-header";
 
 export const userService = {
   login,
@@ -18,7 +18,7 @@ function login(identifier, password) {
     body: JSON.stringify({ identifier, password })
   };
 
-  return fetch(`${config.apiUrl}/auth​/local`, requestOptions)
+  return fetch(`/auth​/local`, requestOptions)
     .then(handleResponse)
     .then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
@@ -38,7 +38,7 @@ function getAll() {
     headers: authHeader()
   };
   let queryString = "_limit=10&_start=0&_sort=id:ASC&source=users-permissions";
-  return fetch(`${config.apiUrl}/users?${queryString}`, requestOptions).then(
+  return fetch(`/users?${queryString}`, requestOptions).then(
     handleResponse
   );
 }
@@ -49,7 +49,7 @@ function getById(id) {
     headers: authHeader()
   };
 
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
+  return fetch(`/users/${id}`, requestOptions).then(
     handleResponse
   );
 }
@@ -61,7 +61,7 @@ function register(user) {
     body: JSON.stringify(user)
   };
 
-  return fetch(`${config.apiUrl}/auth/local/register`, requestOptions).then(
+  return fetch(`/auth/local/register`, requestOptions).then(
     handleResponse
   );
 }
@@ -73,7 +73,7 @@ function update(user) {
     body: JSON.stringify(user)
   };
 
-  return fetch(`${config.apiUrl}/users/${user.id}`, requestOptions).then(
+  return fetch(`/users/${user.id}`, requestOptions).then(
     handleResponse
   );
 }
@@ -85,7 +85,7 @@ function _delete(id) {
     headers: authHeader()
   };
 
-  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
+  return fetch(`/users/${id}`, requestOptions).then(
     handleResponse
   );
 }
