@@ -1,6 +1,6 @@
 ## Quickstart (recommended)
 
-1. `git clone https://github.com/toantonthat/react-example.git`
+Clone react-example : `git clone https://github.com/toantonthat/react-example.git`
 
 Then run : 
 ```
